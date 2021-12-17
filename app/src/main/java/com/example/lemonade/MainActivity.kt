@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
      * Clicking will elicit a different response depending on the state.
      * This method determines the state and proceeds with the correct action.
      */
-    private fun clickLemonImage(): String {
+    private fun clickLemonImage(){
 
         // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
         //  when the the image is clicked we may need to change state to the next step in the
@@ -145,6 +145,7 @@ class MainActivity : AppCompatActivity() {
                 lemonadeState=SELECT
             }
         }
+        setViewElements()
     }
 
     /**
@@ -160,6 +161,30 @@ class MainActivity : AppCompatActivity() {
         // TODO: Additionally, for each state, the lemonImage should be set to the corresponding
         //  drawable from the drawable resources. The drawables have the same names as the strings
         //  but remember that they are drawables, not strings.
+        when(lemonadeState){
+            SELECT->{
+                textAction.setText(R.string.lemon_select)
+                lemonImage?.setImageResource(R.drawable.lemon_tree)
+            }
+        }
+        when(lemonadeState){
+            SQUEEZE->{
+                textAction.setText(R.string.lemon_squeeze)
+                lemonImage?.setImageResource(R.drawable.lemon_squeeze)
+            }
+        }
+        when(lemonadeState){
+            DRINK->{
+                textAction.setText(R.string.lemon_drink)
+                lemonImage?.setImageResource(R.drawable.lemon_drink)
+            }
+        }
+        when(lemonadeState){
+            RESTART->{
+                textAction.setText(R.string.lemon_empty_glass)
+                lemonImage?.setImageResource(R.drawable.lemon_restart)
+            }
+        }
     }
 
     /**
