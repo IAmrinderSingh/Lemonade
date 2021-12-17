@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
      * Clicking will elicit a different response depending on the state.
      * This method determines the state and proceeds with the correct action.
      */
-    private fun clickLemonImage() {
+    private fun clickLemonImage(): String {
 
         // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
         //  when the the image is clicked we may need to change state to the next step in the
@@ -114,6 +114,37 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: lastly, before the function terminates we need to set the view elements so that the
         //  UI can reflect the correct state
+
+        when(lemonadeState){
+            SELECT->{
+                val tree=LemonTree()
+                squeezeCount=tree.pick()
+                lemonadeState=SQUEEZE
+            }
+        }
+
+        when(lemonadeState){
+            SQUEEZE->{
+                squeezeCount+=1
+                lemonSize-=1
+                if(lemonSize==0){
+                    lemonadeState=DRINK
+                }
+            }
+        }
+
+        when(lemonadeState){
+            DRINK->{
+                lemonadeState=RESTART
+                lemonSize=-1
+            }
+        }
+
+        when(lemonadeState){
+            RESTART->{
+                lemonadeState=SELECT
+            }
+        }
     }
 
     /**
